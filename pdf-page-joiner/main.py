@@ -1,4 +1,5 @@
 import fitz  # PyMuPDF
+import sys
 
 def merge_pairs_in_pdf(pdf_path, output_path):
     # Open the original PDF
@@ -33,3 +34,13 @@ def merge_pairs_in_pdf(pdf_path, output_path):
     new_doc.save(output_path)
     new_doc.close()
     doc.close()
+
+
+if __name__ == "__main__":
+    pdf_path = str(sys.argv[1])
+    
+    if not pdf_path:
+        print("pdf file needed as argument")
+        sys.exit(1)
+    
+    merge_pairs_in_pdf(pdf_path, pdf_path[:-4] + "-joined.pdf")
