@@ -21,7 +21,8 @@ def pdf_to_docx(pdf_file_path):
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
-        print("Usage: python pdf_to_docx.py <PDF file path>")
-    else:
-        pdf_file_path = sys.argv[1]
-        pdf_to_docx(pdf_file_path)
+        print("Usage: python main.py <PDF file path>")
+        sys.exit(1)
+        
+    pdf_file_path = sys.argv[1]
+    pdf_to_docx(pdf_file_path)

@@ -1,5 +1,6 @@
 from PIL import Image
 import os
+import sys
 
 def resize_image(input_image_path, output_dir, sizes=((32, 32), (192, 192), (512, 512))):
     """
@@ -43,8 +44,13 @@ def resize_image(input_image_path, output_dir, sizes=((32, 32), (192, 192), (512
     
     return resized_image_paths
 
-# Example usage
-input_image_path = './favicon.webp'
-output_dir = './out'
-resized_images = resize_image(input_image_path, output_dir)
-print("Resized images saved to:", resized_images)
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print("Usage: python main.py <input_image_path>")
+        sys.exit(1)
+    
+    input_image_path = str(sys.argv[1])
+    
+    resized_images = resize_image(input_image_path, './out')
+    
+    print("Resized images saved to:", resized_images)

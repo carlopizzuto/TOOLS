@@ -9,7 +9,7 @@ def merge_pairs_in_pdf(pdf_path, output_path):
     new_doc = fitz.open()
 
     for i in range(0, len(doc), 2):
-        if i + 1 < len(doc):  # If there is a pair to process
+        if i + 1 < len(doc):  # If there is a pair to process 
             first_page = doc[i]
             second_page = doc[i + 1]
             # Use the cropbox which usually defines the content area
@@ -34,13 +34,14 @@ def merge_pairs_in_pdf(pdf_path, output_path):
     new_doc.save(output_path)
     new_doc.close()
     doc.close()
+    
+    print("Joined PDF saved in " + output_path)
 
 
 if __name__ == "__main__":
-    pdf_path = str(sys.argv[1])
-    
-    if not pdf_path:
-        print("pdf file needed as argument")
+    if len(sys.argv) != 2:
+        print("Usage: python main.py <PDF file path>")
         sys.exit(1)
-    
+        
+    pdf_path = str(sys.argv[1])
     merge_pairs_in_pdf(pdf_path, pdf_path[:-4] + "-joined.pdf")
