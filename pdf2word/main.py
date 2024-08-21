@@ -2,11 +2,18 @@
 
 from pdf2docx import Converter
 import sys
+import os
 
 def pdf_to_docx(pdf_file_path):
-    # Extract the file name without the extension and directory path
-    base_name = pdf_file_path.rsplit('.', 1)[0]
-    docx_file_path = f"{base_name}.docx"
+    # Extract the file name without the extension
+    base_name = os.path.splitext(os.path.basename(pdf_file_path))[0]
+    
+    # Create the output directory if it doesn't exist
+    output_dir = "../out/pdf2word"
+    os.makedirs(output_dir, exist_ok=True)
+    
+    # Set the output path
+    docx_file_path = os.path.join(output_dir, f"{base_name}.docx")
 
     # Initialize converter
     cv = Converter(pdf_file_path)

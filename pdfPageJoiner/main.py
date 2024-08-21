@@ -1,5 +1,6 @@
 import fitz  # PyMuPDF
 import sys
+import os
 
 def merge_pairs_in_pdf(pdf_path, output_path):
     # Open the original PDF
@@ -44,4 +45,14 @@ if __name__ == "__main__":
         sys.exit(1)
         
     pdf_path = str(sys.argv[1])
-    merge_pairs_in_pdf(pdf_path, pdf_path[:-4] + "-joined.pdf")
+    # Extract the file name without the extension
+    base_name = os.path.splitext(os.path.basename(pdf_path))[0]
+    
+    # Create the output directory if it doesn't exist
+    output_dir = "../out/pdfPageJoiner"
+    os.makedirs(output_dir, exist_ok=True)
+    
+    # Set the output path
+    output_path = os.path.join(output_dir, f"{base_name}.pdf")
+    
+    merge_pairs_in_pdf(pdf_path, output_path)
