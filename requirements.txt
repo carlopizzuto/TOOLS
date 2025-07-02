@@ -1,0 +1,3 @@
+# Core dependencies (keep minimal)
+# Install specific tool dependencies with: pip install .[audio], pip install .[image], etc.
+# See pyproject.toml for optional dependencies 
